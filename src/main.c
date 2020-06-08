@@ -1,10 +1,13 @@
+#include "convert.h"
+#include "getch.h"
+#include "getstring.h"
 #include "howstring.h"
 #include "howsymbols.h"
-#include "getstring.h"
-#include "convert.h"
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <termios.h>
+#include <unistd.h>
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -24,9 +27,9 @@ int main()
     getstring(fRus, pRus);
     char *eng[strok], *rus[strok];
     for (i = 0; i < strok; i++)
-    eng[i] = (char *)malloc(sizeof(char));
+        eng[i] = (char*)malloc(sizeof(char));
     for (i = 0; i < strok; i++)
-    rus[i] = (char *)malloc(sizeof(char));
+        rus[i] = (char*)malloc(sizeof(char));
     printf("PENG:%s\n", pEng);
     printf("PRUS:%s\n", pRus);
     convert(pEng, eng);
