@@ -6,7 +6,7 @@ int howstring(FILE* f)
     int c = 0;
     if (f == NULL) {
         perror("");
-        exit(1);
+        return -1;
     }
     while (!feof(f)) {
         k = getc(f);
