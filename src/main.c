@@ -1,8 +1,10 @@
 #include "convert.h"
+#include "enter.h"
 #include "getch.h"
 #include "getstring.h"
 #include "howstring.h"
 #include "howsymbols.h"
+#include <ctype.h>
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
