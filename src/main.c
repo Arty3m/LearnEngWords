@@ -1,5 +1,6 @@
 #include "howstring.h"
 #include "howsymbols.h"
+#include "getstring.h"
 #include <locale.h>
 #include <stdio.h>
 int main()
@@ -16,6 +17,11 @@ int main()
         printf("Количество строк в файлах не совпадает! Обновите ваши файлы\n");
         return 0;
     }
+    char pEng[simvEng], pRus[simvRus];
+    getstring(fEng, pEng);
+    getstring(fRus, pRus);
+    printf("PENG:%s\n", pEng);
+    printf("PRUS:%s\n", pRus);
     printf("%d\n", simvEng);
     printf("%d", simvRus);
     rewind(fEng);
