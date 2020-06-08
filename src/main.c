@@ -13,7 +13,7 @@
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int i = 0, strok = 0, simvEng = 0, simvRus = 0;
+    int i = 0, strok = 0, simvEng = 0, simvRus = 0, menu = 0;
     FILE* fEng = fopen("EngWords.txt", "r");
     FILE* fRus = fopen("RusWords.txt", "r");
     strok = howstring(fEng);
@@ -44,5 +44,35 @@ int main()
     rewind(fRus);
     fclose(fEng);
     fclose(fRus);
+    printf("Добро пожаловать в приложение для заучивания английских "
+           "слов!\nВведите 1 чтобы проверить свои знания в переводе "
+           "английских слов\nВведите 2 чтобы проверить свои занния в переводе "
+           "русских слов\nВведите 3 чтобы проверить знание написания "
+           "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
+           "чтобы выйти\n");
+    printf("->");
+    enter(&menu);
+    sleep(1);
+    system("clear");
+    while (1) {
+        switch (menu) {
+        case 1: {
+            break;
+        }
+        case 2: {
+            break;
+        }
+        case 3: {
+            break;
+        }
+        case 4: {
+            break;
+        }
+        case 5: {
+            printf("Пока! Заходи еще!\n");
+            return 0;
+        }
+        }
+    }
     return 0;
 }
