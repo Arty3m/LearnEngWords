@@ -5,6 +5,7 @@
 #include "howstring.h"
 #include "howsymbols.h"
 #include "randposition.h"
+#include "compareansw.h"
 #include <ctype.h>
 #include <locale.h>
 #include <stdio.h>
@@ -142,6 +143,45 @@ int main()
             break;
         }
         case 3: {
+          int ans = 0, f3 = 1;
+          char str[1000];
+          while (f3) {
+            system("clear");
+            srand(time(NULL));
+            r = rand() % strok;
+            printf("Для выхода в меню введите <Выход>\nНапишите правильный перевод "
+                   "слова\n*Ответ вводить с большой буквы*\n\n%s "
+                   "--> ",eng[r]);
+            scanf("%s", str);
+            ans = compareansw(str, rus, r);
+            switch (ans) {
+            case 0: {
+              f3 = 0;
+              system("clear");
+              printf("Добро пожаловать в приложение для заучивания английских "
+                     "слов!\nВведите 1 чтобы проверить свои знания в переводе "
+                     "английских слов\nВведите 2 чтобы проверить свои занния в "
+                     "переводе "
+                     "русских слов\nВведите 3 чтобы проверить знание написания "
+                     "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
+                     "чтобы выйти\n");
+              printf("->");
+              enter(&menu);
+              break;
+            }
+            case 1: {
+              printf("\nВерно!\n");
+              sleep(1);
+              break;
+            }
+            case 2:
+              printf("\nОшибочка! Правильно-> %s\n", rus[r]);
+              sleep(2);
+              break;
+            }
+          }
+          enter(&menu);
+          system("clear");
             break;
         }
         case 4: {
