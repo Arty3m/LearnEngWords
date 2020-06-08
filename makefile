@@ -2,8 +2,8 @@ all: main
 
 main: bin/main
 
-bin/main: build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o
-	gcc -Wall -Werror build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o -o bin/main
+bin/main: build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o
+	gcc -Wall -Werror build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o -o bin/main
 
 build/src/main.o: src/main.c
 	gcc -I includes -Wall -lncurses -ltinfo -Werror -c src/main.c -o build/src/main.o
@@ -25,6 +25,9 @@ build/src/getch.o: src/getch.c
 
 build/src/enter.o: src/enter.c
 	gcc -Wall -Werror -c src/enter.c -o build/src/enter.o
+
+build/src/randposition.o: src/randposition.c
+	gcc -Wall -Werror -c src/randposition.c -o build/src/randposition.o
 
 .PHONY: clean
 
