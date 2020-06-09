@@ -8,6 +8,7 @@
 #include "randposition.h"
 #include "randword.h"
 #include "readres.h"
+#include "rres.h"
 #include "wresult.h"
 #include <ctype.h>
 #include <locale.h>
@@ -80,6 +81,8 @@ int main()
                     }
                     switch (key) {
                     case 1: {
+                        rres(strok, res);
+                        printf("Прогресс успешно удалён\n");
                         sleep(1);
                         break;
                     }
@@ -239,6 +242,8 @@ int main()
                     }
                     switch (key) {
                     case 1: {
+                        rres(strok, res);
+                        printf("Прогресс успешно удалён\n");
                         sleep(1);
                         break;
                     }
