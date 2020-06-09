@@ -55,13 +55,15 @@ int main()
         int k = 0, r = 0, answ = 0;
         switch (menu) {
         case 1: {
-            int f1 = 1;
+            int f1 = 1, score = 0;
             while (f1) {
                 int pr[4];
                 srand(time(NULL));
                 r = rand() % strok;
                 printf("Для выхода в меню введите 0 или просто нажмите "
-                       "Enter\nВыберите правильный перевод для слова\n%s\n",
+                       "Enter\nВыберите правильный перевод для слова\t\t\tВаш "
+                       "счёт:%d\n%s\n",
+                       score,
                        eng[r]);
                 k = randposition(pr, strok, r);
 
@@ -96,9 +98,11 @@ int main()
                 case 1: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                rus[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -106,9 +110,11 @@ int main()
                 case 2: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                rus[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -116,9 +122,11 @@ int main()
                 case 3: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                rus[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -126,9 +134,11 @@ int main()
                 case 4: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                rus[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -140,14 +150,16 @@ int main()
             break;
         }
         case 2: {
-            int f2 = 1;
+            int f2 = 1, score = 0;
             while (f2) {
                 system("clear");
                 int pr[4];
                 srand(time(NULL));
                 r = rand() % strok;
                 printf("Для выхода в меню введите 0 или просто нажмите "
-                       "Enter\nВыберите правильный перевод для слова\n%s\n",
+                       "Enter\nВыберите правильный перевод для слова\t\t\tВаш "
+                       "счёт:%d\n%s\n",
+                       score,
                        rus[r]);
                 k = randposition(pr, strok, r);
 
@@ -182,9 +194,11 @@ int main()
                 case 1: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                eng[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -192,9 +206,11 @@ int main()
                 case 2: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                eng[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -202,9 +218,11 @@ int main()
                 case 3: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                eng[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
@@ -212,9 +230,11 @@ int main()
                 case 4: {
                     if (answ == k) {
                         printf("Верно!\n");
+                        score++;
                     } else {
                         printf("Ошибочка!\nПравильный перевод-> %s\n",
                                eng[pr[k - 1]]);
+                        score -= 2;
                         sleep(2);
                     }
                     break;
