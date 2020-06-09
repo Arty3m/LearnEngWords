@@ -7,6 +7,7 @@
 #include "howsymbols.h"
 #include "randposition.h"
 #include "readres.h"
+#include "wresult.h"
 #include <ctype.h>
 #include <locale.h>
 #include <stdio.h>
@@ -299,10 +300,32 @@ int main()
             break;
         }
         case 4: {
+          int q = 1;
+      system("clear");
+      for (i = 0; i < strok; i++)
+        printf("%s - %s\n", eng[i], rus[i]);
+      printf("\nДля выхода в главное меню введите 0\n->");
+      enter(&q);
+      switch (q) {
+      case 0: {
+        system("clear");
+        printf("Добро пожаловать в приложение для заучивания английских "
+               "слов!\nВведите 1 чтобы проверить свои знания в переводе "
+               "английских слов\nВведите 2 чтобы проверить свои занния в "
+               "переводе "
+               "русских слов\nВведите 3 чтобы проверить знание написания "
+               "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
+               "чтобы выйти\n");
+        printf("->");
+        enter(&menu);
+        break;
+      }
+      }
             break;
         }
         case 5: {
             printf("Пока! Заходи еще!\n");
+            wresult(strok, res);
             return 0;
         }
         }
