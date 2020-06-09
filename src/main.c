@@ -6,6 +6,7 @@
 #include "howstring.h"
 #include "howsymbols.h"
 #include "randposition.h"
+#include "randword.h"
 #include "readres.h"
 #include "wresult.h"
 #include <ctype.h>
@@ -18,7 +19,7 @@
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    int i = 0, strok = 0, simvEng = 0, simvRus = 0, menu = 0;
+    int i = 0, strok = 0, simvEng = 0, simvRus = 0, menu = 0, lim = 10;
     FILE* fEng = fopen("EngWords.txt", "r");
     FILE* fRus = fopen("RusWords.txt", "r");
     strok = howstring(fEng);
@@ -32,7 +33,7 @@ int main()
     char pEng[simvEng], pRus[simvRus];
     int res[strok];
     readres(strok, res);
-      for (i = 0; i < strok; i++)
+    for (i = 0; i < strok; i++)
         printf("[%d]%d\n", i + 1, res[i]);
     getstring(fEng, pEng);
     getstring(fRus, pRus);
@@ -63,95 +64,156 @@ int main()
         case 1: {
             int f1 = 1, score = 0;
             while (f1) {
-                int pr[4];
-                srand(time(NULL));
-                r = rand() % strok;
-                printf("Для выхода в меню введите 0 или просто нажмите "
-                       "Enter\nВыберите правильный перевод для слова\t\t\tВаш "
-                       "счёт:%d\n%s\n",
-                       score,
-                       eng[r]);
-                k = randposition(pr, strok, r);
+                int pr[4], key = 0;
+                r = randword(strok, res, lim);
+                if (r == -1) {
+                    printf("ВСЕ СЛОВА ВЫУЧЕНЫ");
+                    printf("Введите 1, чтобы сбросить весь прогрес и начать "
+                           "заного\nВведите 2, чтобы выйти в главное "
+                           "меню\n-->");
+                    enter(&key);
+                    while (key != 1 && key != 2) {
+                        printf("Такого варианта нет, попробуйте еще\n");
+                        printf("->");
+                        enter(&key);
+                    }
+                    switch (key) {
+                    case 1: {
+                        sleep(1);
+                        break;
+                    }
+                    case 2: {
+                        system("clear");
+                        f1 = 0;
+                        printf("Добро пожаловать в приложение для заучивания "
+                               "английских "
+                               "слов!\nВведите 1 чтобы проверить свои знания в "
+                               "переводе "
+                               "английских слов\nВведите 2 чтобы проверить "
+                               "свои занния в "
+                               "переводе русских слов\nВведите 3 чтобы "
+                               "проверить знание "
+                               "написания слов\nВведите 4 чтобы открыть "
+                               "словарь\nВведите 5 "
+                               "чтобы выйти\n");
+                        printf("->");
+                        Enter(&menu);
+                        break;
+                    }
+                    default: {
+                        printf("Неверный ввод. Попробуйте еще.\n");
+                        sleep(1);
+                        system("clear");
+                        printf("СЛОВА КОНЧИЛИСЬ\n");
+                        printf("Введите 1, чтобы сбросить весь прогрес и "
+                               "начать "
+                               "заного\nВведите 2, чтобы выйти в главное "
+                               "меню\n-->");
+                        Enter(&key);
+                        break;
+                    }
+                    }
+                } else {
+                    printf("Для выхода в меню введите 0 или просто нажмите "
+                           "Enter\nВыберите правильный перевод для "
+                           "слова\t\t\tВаш "
+                           "счёт:%d\n%s\n",
+                           score,
+                           eng[r]);
+                    k = randposition(pr, strok, r);
 
-                printf("\n1.%s\n2.%s\n3.%s\n4.%s\n",
-                       rus[pr[0]],
-                       rus[pr[1]],
-                       rus[pr[2]],
-                       rus[pr[3]]);
-                printf("->");
-                enter(&answ);
-                while (answ != 0 && answ != 1 && answ != 2 && answ != 3
-                       && answ != 4) {
-                    printf("Такого варианта нет, попробуйте еще\n");
+                    printf("\n1.%s\n2.%s\n3.%s\n4.%s\n",
+                           rus[pr[0]],
+                           rus[pr[1]],
+                           rus[pr[2]],
+                           rus[pr[3]]);
                     printf("->");
                     enter(&answ);
-                }
-                switch (answ) {
-                case 0: {
+                    while (answ != 0 && answ != 1 && answ != 2 && answ != 3
+                           && answ != 4) {
+                        printf("Такого варианта нет, попробуйте еще\n");
+                        printf("->");
+                        enter(&answ);
+                    }
+                    switch (answ) {
+                    case 0: {
+                        system("clear");
+                        f1 = 0;
+                        printf("Добро пожаловать в приложение для заучивания "
+                               "английских слов!\nВведите 1 чтобы проверить "
+                               "свои "
+                               "знания в переводе английских слов\nВведите 2 "
+                               "чтобы "
+                               "проверить свои знания в переводе русских "
+                               "слов\nВведите 3 чтобы проверить знание "
+                               "написания "
+                               "слов\nВведите 4 чтобы открыть словарь\nВведите "
+                               "5 "
+                               "чтобы выйти\n");
+                        printf("->");
+                        enter(&menu);
+                        break;
+                    }
+                    case 1: {
+                        if (answ == k) {
+                            printf("Верно!\n");
+                            score++;
+                            res[r] += 1;
+                        } else {
+                            printf("Ошибочка!\nПравильный перевод-> %s\n",
+                                   rus[pr[k - 1]]);
+                            score -= 2;
+                            res[r] = 0;
+                            sleep(2);
+                        }
+                        break;
+                    }
+                    case 2: {
+                        if (answ == k) {
+                            printf("Верно!\n");
+                            score++;
+                            res[r] += 1;
+                        } else {
+                            printf("Ошибочка!\nПравильный перевод-> %s\n",
+                                   rus[pr[k - 1]]);
+                            score -= 2;
+                            res[r] = 0;
+                            sleep(2);
+                        }
+                        break;
+                    }
+                    case 3: {
+                        if (answ == k) {
+                            printf("Верно!\n");
+                            score++;
+                            res[r] += 1;
+                        } else {
+                            printf("Ошибочка!\nПравильный перевод-> %s\n",
+                                   rus[pr[k - 1]]);
+                            score -= 2;
+                            res[r] = 0;
+                            sleep(2);
+                        }
+                        break;
+                    }
+                    case 4: {
+                        if (answ == k) {
+                            printf("Верно!\n");
+                            score++;
+                            res[r] += 1;
+                        } else {
+                            printf("Ошибочка!\nПравильный перевод-> %s\n",
+                                   rus[pr[k - 1]]);
+                            score -= 2;
+                            res[r] = 0;
+                            sleep(2);
+                        }
+                        break;
+                    }
+                    }
+                    sleep(1);
                     system("clear");
-                    f1 = 0;
-                    printf("Добро пожаловать в приложение для заучивания "
-                           "английских слов!\nВведите 1 чтобы проверить свои "
-                           "знания в переводе английских слов\nВведите 2 чтобы "
-                           "проверить свои знания в переводе русских "
-                           "слов\nВведите 3 чтобы проверить знание написания "
-                           "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
-                           "чтобы выйти\n");
-                    printf("->");
-                    enter(&menu);
-                    break;
                 }
-                case 1: {
-                    if (answ == k) {
-                        printf("Верно!\n");
-                        score++;
-                    } else {
-                        printf("Ошибочка!\nПравильный перевод-> %s\n",
-                               rus[pr[k - 1]]);
-                        score -= 2;
-                        sleep(2);
-                    }
-                    break;
-                }
-                case 2: {
-                    if (answ == k) {
-                        printf("Верно!\n");
-                        score++;
-                    } else {
-                        printf("Ошибочка!\nПравильный перевод-> %s\n",
-                               rus[pr[k - 1]]);
-                        score -= 2;
-                        sleep(2);
-                    }
-                    break;
-                }
-                case 3: {
-                    if (answ == k) {
-                        printf("Верно!\n");
-                        score++;
-                    } else {
-                        printf("Ошибочка!\nПравильный перевод-> %s\n",
-                               rus[pr[k - 1]]);
-                        score -= 2;
-                        sleep(2);
-                    }
-                    break;
-                }
-                case 4: {
-                    if (answ == k) {
-                        printf("Верно!\n");
-                        score++;
-                    } else {
-                        printf("Ошибочка!\nПравильный перевод-> %s\n",
-                               rus[pr[k - 1]]);
-                        score -= 2;
-                        sleep(2);
-                    }
-                    break;
-                }
-                }
-                sleep(1);
-                system("clear");
             }
             break;
         }
@@ -300,27 +362,31 @@ int main()
             break;
         }
         case 4: {
-          int q = 1;
-      system("clear");
-      for (i = 0; i < strok; i++)
-        printf("%s - %s\n", eng[i], rus[i]);
-      printf("\nДля выхода в главное меню введите 0\n->");
-      enter(&q);
-      switch (q) {
-      case 0: {
-        system("clear");
-        printf("Добро пожаловать в приложение для заучивания английских "
-               "слов!\nВведите 1 чтобы проверить свои знания в переводе "
-               "английских слов\nВведите 2 чтобы проверить свои занния в "
-               "переводе "
-               "русских слов\nВведите 3 чтобы проверить знание написания "
-               "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
-               "чтобы выйти\n");
-        printf("->");
-        enter(&menu);
-        break;
-      }
-      }
+            int q = 1;
+            system("clear");
+            for (i = 0; i < strok; i++)
+                printf("%s - %s\n", eng[i], rus[i]);
+            printf("\nДля выхода в главное меню введите 0\n->");
+            enter(&q);
+            switch (q) {
+            case 0: {
+                system("clear");
+                printf("Добро пожаловать в приложение для заучивания "
+                       "английских "
+                       "слов!\nВведите 1 чтобы проверить свои знания в "
+                       "переводе "
+                       "английских слов\nВведите 2 чтобы проверить свои занния "
+                       "в "
+                       "переводе "
+                       "русских слов\nВведите 3 чтобы проверить знание "
+                       "написания "
+                       "слов\nВведите 4 чтобы открыть словарь\nВведите 5 "
+                       "чтобы выйти\n");
+                printf("->");
+                enter(&menu);
+                break;
+            }
+            }
             break;
         }
         case 5: {
