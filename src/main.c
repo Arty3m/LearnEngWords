@@ -6,6 +6,7 @@
 #include "howstring.h"
 #include "howsymbols.h"
 #include "randposition.h"
+#include "readres.h"
 #include <ctype.h>
 #include <locale.h>
 #include <stdio.h>
@@ -28,6 +29,10 @@ int main()
         return 0;
     }
     char pEng[simvEng], pRus[simvRus];
+    int res[strok];
+    readres(strok, res);
+      for (i = 0; i < strok; i++)
+        printf("[%d]%d\n", i + 1, res[i]);
     getstring(fEng, pEng);
     getstring(fRus, pRus);
     char *eng[strok], *rus[strok];
