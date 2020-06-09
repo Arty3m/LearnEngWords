@@ -3,23 +3,26 @@
 #include <time.h>
 int randword(int strok, int* p, int c)
 {
-    int r = 0, i = 0;
+    int r = 0, i = 0, j = 0, k = 0;
     srand(time(NULL));
-    int arr[strok];
     for (i = 0; i < strok; i++) {
-        arr[i] = c - p[i];
-        printf("%d\n", arr[i]);
+        if (p[i] < c) {
+            k += c - p[i];
+            j++;
+        }
     }
+    int arr[j];
+    j = 0;
+    for (i = 0; i < strok; i++)
+        if (p[i] < c) {
+            arr[j++] = i;
+        }
     i = 0;
-    while (1) {
-        r = random() % strok;
-        printf("[%d]r=%d\n", i + 1, r);
-        if ((arr[r] != 0) && (p[r] < c)) {
-            i++;
-            arr[r] -= 1;
-            printf("P[r]=%d", p[r]);
-            return r;
-        } else if (i == 0)
-            return -1;
+    while (k != 0) {
+        r = random() % j;
+        if (p[arr[r]] < c) {
+            return arr[r];
+        }
     }
+    return -1;
 }
