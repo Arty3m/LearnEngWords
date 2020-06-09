@@ -2,8 +2,8 @@ all: main
 
 main: bin/main
 
-bin/main: build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o
-	gcc -Wall -Werror build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o -o bin/main
+bin/main: build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o build/src/randword.o
+	gcc -Wall -Werror build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o build/src/randword.o -o bin/main
 
 build/src/main.o: src/main.c
 	gcc -I includes -Wall -lncurses -ltinfo -Werror -c src/main.c -o build/src/main.o
@@ -37,6 +37,9 @@ build/src/readres.o: src/readres.c
 
 build/src/wresult.o: src/wresult.c
 	gcc -Wall -Werror -c src/wresult.c -o build/src/wresult.o
+
+build/src/randword.o: src/randword.c
+	gcc -Wall -Werror -c src/randword.c -o build/src/randword.o
 
 .PHONY: clean
 
