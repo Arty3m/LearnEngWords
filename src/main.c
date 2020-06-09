@@ -97,7 +97,7 @@ int main()
                                "словарь\nВведите 5 "
                                "чтобы выйти\n");
                         printf("->");
-                        Enter(&menu);
+                        enter(&menu);
                         break;
                     }
                     default: {
@@ -109,7 +109,7 @@ int main()
                                "начать "
                                "заного\nВведите 2, чтобы выйти в главное "
                                "меню\n-->");
-                        Enter(&key);
+                        enter(&key);
                         break;
                     }
                     }
