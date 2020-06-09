@@ -7,6 +7,7 @@
 #include "howsymbols.h"
 #include "randposition.h"
 #include "readres.h"
+#include "wresult.h"
 #include <ctype.h>
 #include <locale.h>
 #include <stdio.h>
@@ -324,6 +325,7 @@ int main()
         }
         case 5: {
             printf("Пока! Заходи еще!\n");
+            wresult(strok, res);
             return 0;
         }
         }
