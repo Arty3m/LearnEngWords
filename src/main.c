@@ -1,3 +1,4 @@
+
 #include "compareansw.h"
 #include "convert.h"
 #include "enter.h"
@@ -440,6 +441,7 @@ int main()
             break;
         }
         case 5: {
+            system("clear");
             printf("Всего доброго! Заходите еще!\n");
             wresult(strok, res);
             return 0;
