@@ -1,50 +1,58 @@
-all: main
+OBJ_CATALOG=build/src
 
-main: bin/main
+CC=gcc
+CFLAGS=-c -Wall -Werror
+LDFLAGS=-Wall -Werror
+SOURCES=main.c howstring.c howsymbols.c getstring.c convert.c getch.c enter.c randposition.c compareansw.c readres.c wresult.c randword.c rres.c
 
-bin/main: build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o build/src/randword.o build/src/rres.o
-	gcc -Wall -Werror build/src/main.o build/src/howstring.o build/src/howsymbols.o build/src/getstring.o build/src/convert.o build/src/getch.o build/src/enter.o build/src/randposition.o build/src/compareansw.o build/src/readres.o build/src/wresult.o build/src/randword.o build/src/rres.o -o bin/main
+OBJECTS=$(addprefix $(OBJ_CATALOG)/, $(SOURCES:.c=.o))
+EXECUTABLE=EngWords
 
-build/src/main.o: src/main.c
-	gcc -I includes -Wall -lncurses -ltinfo -Werror -c src/main.c -o build/src/main.o
+all: $(EXECUTABLE)
 
-build/src/howstring.o: src/howstring.c
-	gcc -Wall -Werror -c src/howstring.c -o build/src/howstring.o
+$(EXECUTABLE): $(OBJECTS)
+$(CC) $(LDFLAGS) $(OBJECTS) -o bin/main
 
-build/src/howsymbols.o: src/howsymbols.c
-	gcc -Wall -Werror -c src/howsymbols.c -o build/src/howsymbols.o
+$(OBJ_CATALOG)/main.o: src/main.c
+$(CC) $(CFLAGS) src/main.c -o $@
 
-build/src/getstring.o: src/getstring.c
-	gcc -Wall -Werror -c src/getstring.c -o build/src/getstring.o
+$(OBJ_CATALOG)/howstring.o: src/howstring.c
+$(CC) $(CFLAGS) src/howstring.c -o $@
 
-build/src/convert.o: src/convert.c
-	gcc -Wall -Werror -c src/convert.c -o build/src/convert.o
+$(OBJ_CATALOG)/howsymbols.o: src/howsymbols.c
+$(CC) $(CFLAGS) src/howsymbols.c -o $@
 
-build/src/getch.o: src/getch.c
-	gcc -Wall -Werror -c src/getch.c -o build/src/getch.o
+$(OBJ_CATALOG)/getstring.o: src/getstring.c
+$(CC) $(CFLAGS) src/getstring.c -o $@
 
-build/src/enter.o: src/enter.c
-	gcc -Wall -Werror -c src/enter.c -o build/src/enter.o
+$(OBJ_CATALOG)/convert.o: src/convert.c
+$(CC) $(CFLAGS) src/convert.c -o $@
 
-build/src/randposition.o: src/randposition.c
-	gcc -Wall -Werror -c src/randposition.c -o build/src/randposition.o
+$(OBJ_CATALOG)/getch.o: src/getch.c
+$(CC) $(CFLAGS) src/getch.c -o $@
 
-build/src/compareansw.o: src/compareansw.c
-	gcc -Wall -Werror -c src/compareansw.c -o build/src/compareansw.o
+$(OBJ_CATALOG)/enter.o: src/enter.c
+$(CC) $(CFLAGS) src/enter.c -o $@
 
-build/src/readres.o: src/readres.c
-	gcc -Wall -Werror -c src/readres.c -o build/src/readres.o
+$(OBJ_CATALOG)/randposition.o: src/randposition.c
+$(CC) $(CFLAGS) src/randposition.c -o $@
 
-build/src/wresult.o: src/wresult.c
-	gcc -Wall -Werror -c src/wresult.c -o build/src/wresult.o
+$(OBJ_CATALOG)/compareansw.o: src/compareansw.c
+$(CC) $(CFLAGS) src/compareansw.c -o $@
 
-build/src/randword.o: src/randword.c
-	gcc -Wall -Werror -c src/randword.c -o build/src/randword.o
+$(OBJ_CATALOG)/readres.o: src/readres.c
+$(CC) $(CFLAGS) src/readres.c -o $@
 
-build/src/rres.o: src/rres.c
-	gcc -Wall -Werror -c src/rres.c -o build/src/rres.o
+$(OBJ_CATALOG)/wresult.o: src/wresult.c
+$(CC) $(CFLAGS) src/wresult.c -o $@
 
-.PHONY: clean
+$(OBJ_CATALOG)/randword.o: src/randword.c
+$(CC) $(CFLAGS) src/randword.c -o $@
+
+$(OBJ_CATALOG)/rres.o: src/rres.c
+$(CC) $(CFLAGS) src/rres.c -o $@
+
+.PHONY: all clean
 
 clean:
-	 rm -rf build/*/*.o
+rm -rf build/*/*.o
