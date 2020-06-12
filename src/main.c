@@ -1,4 +1,3 @@
-
 #include "compareansw.h"
 #include "convert.h"
 #include "enter.h"
@@ -35,15 +34,13 @@ int main()
     char pEng[simvEng], pRus[simvRus];
     int res[strok];
     readres(strok, res);
-    for (i = 0; i < strok; i++)
-        printf("[%d]%d\n", i + 1, res[i]);
     getstring(fEng, pEng);
     getstring(fRus, pRus);
     char *eng[strok], *rus[strok];
-    for (i = 0; i < strok; i++)
+    for (i = 0; i < strok; i++) {
         eng[i] = (char*)malloc(sizeof(char));
-    for (i = 0; i < strok; i++)
         rus[i] = (char*)malloc(sizeof(char));
+    }
     convert(pEng, eng);
     convert(pRus, rus);
     rewind(fEng);
@@ -378,12 +375,12 @@ int main()
                 system("clear");
                 srand(time(NULL));
                 r = rand() % strok;
-                printf("Для выхода в меню введите <Выход>\nНапишите правильный "
+                printf("Для выхода в меню введите <Exit>\nНапишите правильный "
                        "перевод слова\n*Ответ вводить с большой буквы*\n\n%s "
                        "--> ",
-                       eng[r]);
+                       rus[r]);
                 scanf("%s", str);
-                ans = compareansw(str, rus, r);
+                ans = compareansw(str, eng, r);
                 switch (ans) {
                 case 0: {
                     f3 = 0;
@@ -406,7 +403,7 @@ int main()
                     break;
                 }
                 case 2:
-                    printf("\nОшибочка! Правильно-> %s\n", rus[r]);
+                    printf("\nОшибочка! Правильно-> %s\n", eng[r]);
                     sleep(2);
                     break;
                 }
