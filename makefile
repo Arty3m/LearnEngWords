@@ -5,7 +5,7 @@ CC=gcc
 CFLAGS=-c -Wall -Werror
 LDFLAGS=-Wall -Werror
 SOURCES=main.c howstring.c howsymbols.c getstring.c convert.c getch.c enter.c randposition.c compareansw.c readres.c wresult.c randword.c rres.c
-SOURCES_TEST=main-test.c howstring.c howsymbols.c randposition.c
+SOURCES_TEST=main-test.c howstring.c howsymbols.c randposition.c randword.c
 VPATH=src test
 
 OBJECTS=$(addprefix $(OBJ_CATALOG)/, $(SOURCES:.c=.o))
@@ -17,7 +17,8 @@ all: $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS) $(OBJECTS_TEST)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o bin/main
 	$(CC) $(LDFLAGS) $(OBJECTS_TEST) -o bin/main-test
-
+	./bin/main-test
+	
 $(OBJ_CATALOG)/%.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
