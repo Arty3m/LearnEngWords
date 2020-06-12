@@ -82,7 +82,7 @@ CTEST(randword, correct_2)
     for (int i = 0; i < strok; i++)
         p[i] = 5;
     result = randword(strok, p, 10);
-    if (result != --1)
+    if (result != -1)
         result = 0;
     ASSERT_EQUAL(0, result);
 }
