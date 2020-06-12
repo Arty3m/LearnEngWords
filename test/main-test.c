@@ -4,6 +4,7 @@
 #include <howsymbols.h>
 #include <randposition.h>
 #include <randword.h>
+#include <rres.h>
 CTEST(howstring, correct_1)
 {
     FILE* f;
@@ -95,6 +96,17 @@ CTEST(randword, correct_3)
     if (result != -1)
         result = 0;
     ASSERT_EQUAL(-1, result);
+}
+CTEST(rres, correct)
+{
+    int p[10], i = 0, result = 0;
+    for (i = 0; i < 10; i++)
+        p[i] = 20;
+    rres(10, p);
+    for (i = 0; i < 10; i++)
+        if (p[i] == 0)
+            result++;
+    ASSERT_EQUAL(10, result);
 }
 int main(int argc, const char* argv[])
 {
