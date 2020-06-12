@@ -1,6 +1,8 @@
 #define CTEST_MAIN
 #include <ctest.h>
 #include <howstring.h>
+#include <howsymbols.h>
+#include <randposition.h>
 CTEST(howstring, correct_1)
 {
     FILE* f;
@@ -46,6 +48,22 @@ CTEST(howsymbols, nonexistentfile)
     int result = 0;
     result = howsymbols(f);
     ASSERT_EQUAL(-1, result);
+}
+CTEST(randposition, correct)
+{
+    int pr[4], strok = 16, k = 0, r = 5, result = 0;
+    k = randposition(pr, strok, r);
+    if (pr[k - 1] == r)
+        result = 0;
+    ASSERT_EQUAL(0, result);
+}
+CTEST(randposition, incorrect)
+{
+    int p[4], strok = 16, k = 0, r = 3, result = 0;
+    k = randposition(p, strok, r);
+    if (p[k] != r)
+        result = 1;
+    ASSERT_EQUAL(1, result);
 }
 int main(int argc, const char* argv[])
 {
