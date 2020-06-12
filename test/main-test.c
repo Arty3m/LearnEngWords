@@ -3,6 +3,7 @@
 #include <howstring.h>
 #include <howsymbols.h>
 #include <randposition.h>
+#include <randword.h>
 CTEST(howstring, correct_1)
 {
     FILE* f;
@@ -64,6 +65,36 @@ CTEST(randposition, incorrect)
     if (p[k] != r)
         result = 1;
     ASSERT_EQUAL(1, result);
+}
+CTEST(randword, correct_1)
+{
+    int p[10], strok = 10, result = 0;
+    for (int i = 0; i < strok; i++)
+        p[i] = 0;
+    result = randword(strok, p, 10);
+    if (result != -1)
+        result = 0;
+    ASSERT_EQUAL(0, result);
+}
+CTEST(randword, correct_2)
+{
+    int p[10], strok = 10, result = 0;
+    for (int i = 0; i < strok; i++)
+        p[i] = 5;
+    result = randword(strok, p, 10);
+    if (result != --1)
+        result = 0;
+    ASSERT_EQUAL(0, result);
+}
+CTEST(randword, correct_3)
+{
+    int p[10], strok = 10, result = 0;
+    for (int i = 0; i < strok; i++)
+        p[i] = 10;
+    result = randword(strok, p, 10);
+    if (result != -1)
+        result = 0;
+    ASSERT_EQUAL(-1, result);
 }
 int main(int argc, const char* argv[])
 {
