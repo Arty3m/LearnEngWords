@@ -2,4 +2,6 @@ build/*/*.o
 
 bin/main
 
+bin/main-test
+
 bin/Results.txt
