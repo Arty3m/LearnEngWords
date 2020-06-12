@@ -1,0 +1,4 @@
+Hello
+Man
+Girl
+Weather

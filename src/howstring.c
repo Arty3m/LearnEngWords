@@ -10,7 +10,7 @@ int howstring(FILE* f)
     }
     while (!feof(f)) {
         k = getc(f);
-        if (k == '\n')
+        if (k == '\n' || k == ' ')
             c++;
     }
     rewind(f);
