@@ -1,5 +1,6 @@
 #define CTEST_MAIN
 #include <ctest.h>
+#include <getstring.h>
 #include <howstring.h>
 #include <howsymbols.h>
 #include <randposition.h>
@@ -107,6 +108,57 @@ CTEST(rres, correct)
         if (p[i] == 0)
             result++;
     ASSERT_EQUAL(10, result);
+}
+CTEST(getstring, correct)
+{
+    FILE* f;
+    f = fopen("test/testfiles/test1.txt", "r");
+    int result = 0;
+    char p[30], *right = "Hello Man Girl Weather";
+    if ((getstring(f, p) == 0) && (strcmp(p, right) == 0))
+        result = 0;
+    else
+        result = -1;
+    rewind(f);
+    fclose(f);
+    ASSERT_EQUAL(0, result);
+}
+CTEST(getstring, incorrect_1)
+{
+    FILE* f;
+    f = fopen("test/testfiles/test1.txt", "r");
+    int result = 0;
+    char p[30], *right = "HelloBen";
+    if ((getstring(f, p) == 0) && (strcmp(p, right) == 0))
+        result = 0;
+    else
+        result = -1;
+    rewind(f);
+    fclose(f);
+    ASSERT_EQUAL(-1, result);
+}
+CTEST(getstring, incorrect_2)
+{
+    FILE* f;
+    f = fopen("test/testfiles/test1.txt", "r");
+    int result = 0;
+    char p[30], *right = "Hallo";
+    if ((getstring(f, p) == 0) && (strcmp(p, right) == 0))
+        result = 0;
+    else
+        result = -1;
+    rewind(f);
+    fclose(f);
+    ASSERT_EQUAL(-1, result);
+}
+CTEST(getstring, incorrect_3)
+{
+    FILE* f;
+    f = fopen("test/testfiles/nonexistentfile.txt", "r");
+    int result = 0;
+    char p[30];
+    result = getstring(f, p);
+    ASSERT_EQUAL(-1, result);
 }
 int main(int argc, const char* argv[])
 {
