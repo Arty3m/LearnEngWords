@@ -160,6 +160,42 @@ CTEST(getstring, incorrect_3)
     result = getstring(f, p);
     ASSERT_EQUAL(-1, result);
 }
+CTEST(convert, correct)
+{
+    int result = 0;
+    char p[] = "Hello Man Girl Weather";
+    char* eng[4];
+    for (int i = 0; i < 4; i++)
+        eng[i] = (char*)malloc(sizeof(char));
+    convert(p, eng);
+    if (strcmp(eng[0], "Hello") == 0)
+        result++;
+    if (strcmp(eng[1], "Man") == 0)
+        result++;
+    if (strcmp(eng[2], "Girl") == 0)
+        result++;
+    if (strcmp(eng[3], "Weather") == 0)
+        result++;
+    ASSERT_EQUAL(4, result);
+}
+CTEST(convert, incorrect)
+{
+    int result = 0;
+    char p[] = "Hello Man Girl Weather";
+    char* eng[4];
+    for (int i = 0; i < 4; i++)
+        eng[i] = (char*)malloc(sizeof(char));
+    convert(p, eng);
+    if (strcmp(eng[0], "Hello") == 0)
+        result++;
+    if (strcmp(eng[1], "Man") == 0)
+        result++;
+    if (strcmp(eng[2], "Book") == 0)
+        result++;
+    if (strcmp(eng[3], "Weather") == 0)
+        result++;
+    ASSERT_EQUAL(3, result);
+}
 int main(int argc, const char* argv[])
 {
     return ctest_main(argc, argv);
