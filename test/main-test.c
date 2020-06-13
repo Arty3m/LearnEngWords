@@ -1,4 +1,5 @@
 #define CTEST_MAIN
+#include <compareansw.h>
 #include <ctest.h>
 #include <getstring.h>
 #include <howstring.h>
@@ -195,6 +196,35 @@ CTEST(convert, incorrect)
     if (strcmp(eng[3], "Weather") == 0)
         result++;
     ASSERT_EQUAL(3, result);
+}
+CTEST(compareansw, correct_1)
+{
+    int r = 1, result = 0;
+    char answ[] = "Weather", *arr[4];
+    arr[r] = (char*)malloc(sizeof(char));
+    arr[r] = "Weather";
+    result = compareansw(answ, arr, r);
+
+    ASSERT_EQUAL(1, result);
+}
+CTEST(compareansw, correct_2)
+{
+    int r = 1, result = 0;
+    char answ[] = "Exit", *arr[4];
+    arr[r] = (char*)malloc(sizeof(char));
+    arr[r] = "Weather";
+    result = compareansw(answ, arr, r);
+
+    ASSERT_EQUAL(0, result);
+}
+CTEST(compareansw, incorrect)
+{
+    int r = 1, result = 0;
+    char answ[] = "Hello", *arr[4];
+    arr[r] = (char*)malloc(sizeof(char));
+    arr[r] = "Weather";
+    result = compareansw(answ, arr, r);
+    ASSERT_EQUAL(2, result);
 }
 int main(int argc, const char* argv[])
 {
