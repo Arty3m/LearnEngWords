@@ -23,6 +23,7 @@ int main()
     int i = 0, strok = 0, simvEng = 0, simvRus = 0, menu = 0, lim = 10;
     FILE* fEng = fopen("EngWords.txt", "r");
     FILE* fRus = fopen("RusWords.txt", "r");
+    FILE* fRes = fopen("Results.txt", "r");
     strok = howstring(fEng);
     if (strok == (howstring(fRus))) {
         simvEng = howsymbols(fEng);
@@ -33,7 +34,7 @@ int main()
     }
     char pEng[simvEng], pRus[simvRus];
     int res[strok];
-    readres(strok, res);
+    readres(fRes, strok, res);
     getstring(fEng, pEng);
     getstring(fRus, pRus);
     char *eng[strok], *rus[strok];

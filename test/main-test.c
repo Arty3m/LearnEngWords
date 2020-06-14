@@ -7,6 +7,7 @@
 #include <howsymbols.h>
 #include <randposition.h>
 #include <randword.h>
+#include <readres.h>
 #include <rres.h>
 CTEST(howstring, correct_1)
 {
@@ -226,6 +227,36 @@ CTEST(compareansw, incorrect)
     arr[r] = "Weather";
     result = compareansw(answ, arr, r);
     ASSERT_EQUAL(2, result);
+}
+CTEST(readres, correct_1)
+{
+    int strok = 4, result = 0;
+    FILE* f = fopen("test/testfiles/testres2.txt", "r");
+    int res[strok];
+    if ((readres(f, strok, res) == 0) && (res[0] == 0) && (res[1] == 0)
+        && (res[2] == 0) && (res[3] == 0))
+        result = 0;
+    fclose(f);
+    ASSERT_EQUAL(0, result);
+}
+CTEST(readres, correct_2)
+{
+    int strok = 4, result = 0;
+    FILE* f = fopen("test/testfiles/testres3.txt", "r");
+    int res[strok];
+    if ((readres(f, strok, res) == 0) && (res[0] == 1) && (res[1] == 5)
+        && (res[2] == 2) && (res[3] == 9))
+        result = 0;
+    fclose(f);
+    ASSERT_EQUAL(0, result);
+}
+CTEST(readres, nonexistentfile)
+{
+    int strok = 4, result = 0;
+    FILE* f = fopen("test/testfiles/nonexistentfile.txt", "r");
+    int res[strok];
+    result = readres(f, strok, res);
+    ASSERT_EQUAL(-1, result);
 }
 int main(int argc, const char* argv[])
 {

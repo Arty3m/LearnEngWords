@@ -1,4 +1,4 @@
 #ifndef READRES_H
 #define READRES_H
-void readres(int strok, int* p);
+int readres(FILE* f, int strok, int* p);
 #endif
