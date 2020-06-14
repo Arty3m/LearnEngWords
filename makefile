@@ -5,7 +5,7 @@ CC=gcc
 CFLAGS=-c -Wall -Werror
 LDFLAGS=-Wall -Werror
 SOURCES=main.c howstring.c howsymbols.c getstring.c convert.c getch.c enter.c randposition.c compareansw.c readres.c wresult.c randword.c rres.c
-SOURCES_TEST=main-test.c howstring.c howsymbols.c randposition.c randword.c rres.c getstring.c convert.c compareansw.c
+SOURCES_TEST=main-test.c howstring.c howsymbols.c randposition.c randword.c rres.c getstring.c convert.c compareansw.c readres.c
 VPATH=src test
 
 OBJECTS=$(addprefix $(OBJ_CATALOG)/, $(SOURCES:.c=.o))
