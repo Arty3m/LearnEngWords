@@ -1,5 +1,6 @@
 #define CTEST_MAIN
 #include <compareansw.h>
+#include <convert.h>
 #include <ctest.h>
 #include <getstring.h>
 #include <howstring.h>
