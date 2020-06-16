@@ -1,4 +1,4 @@
 #ifndef WRESULT_H
 #define WRESULT_H
-void wresult(int strok, int* p);
+int wresult(FILE* f, int strok, int* p);
 #endif
