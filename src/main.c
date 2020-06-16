@@ -88,7 +88,7 @@ int main()
                     case 2: {
                         system("clear");
                         f1 = 0;
-                        wresult(strok, res);
+                        wresult(fRes, strok, res);
                         printf("Добро пожаловать в приложение для заучивания "
                                "английских слов!\nВведите 1 чтобы проверить "
                                "свои знания в переводе английских "
@@ -138,7 +138,7 @@ int main()
                     case 0: {
                         system("clear");
                         f1 = 0;
-                        wresult(strok, res);
+                        wresult(fRes, strok, res);
                         printf("Добро пожаловать в приложение для заучивания "
                                "английских слов!\nВведите 1 чтобы проверить "
                                "свои знания в переводе английских "
@@ -241,7 +241,7 @@ int main()
                     case 2: {
                         system("clear");
                         f2 = 0;
-                        wresult(strok, res);
+                        wresult(fRes, strok, res);
                         printf("Добро пожаловать в приложение для заучивания "
                                "английских слов!\nВведите 1 чтобы проверить "
                                "свои знания в переводе английских "
@@ -293,7 +293,7 @@ int main()
                     case 0: {
                         system("clear");
                         f2 = 0;
-                        wresult(strok, res);
+                        wresult(fRes, strok, res);
                         printf("Добро пожаловать в приложение для заучивания "
                                "английских слов!\nВведите 1 чтобы проверить "
                                "свои знания в переводе английских "
@@ -441,7 +441,7 @@ int main()
         case 5: {
             system("clear");
             printf("Всего доброго! Заходите еще!\n");
-            wresult(strok, res);
+            wresult(fRes, strok, res);
             return 0;
         }
         default: {
