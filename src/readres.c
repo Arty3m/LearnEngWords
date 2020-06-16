@@ -9,10 +9,8 @@ int readres(FILE* f, int strok, int* p)
         return -1;
     }
     for (i = 0; i < strok; i++) {
-        if (fgets(s, 30, f) != NULL)
+        if (fgets(s, 100, f) != NULL)
             p[i] = atoi(s);
     }
-    rewind(f);
-    fclose(f);
     return 0;
 }

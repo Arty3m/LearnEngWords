@@ -9,6 +9,7 @@
 #include <randword.h>
 #include <readres.h>
 #include <rres.h>
+#include <wresult.h>
 CTEST(howstring, correct_1)
 {
     FILE* f;
@@ -257,6 +258,16 @@ CTEST(readres, nonexistentfile)
     int res[strok];
     result = readres(f, strok, res);
     ASSERT_EQUAL(-1, result);
+}
+CTEST(wresult, correct)
+{
+    int i = 0, strok = 4, result = 0;
+    FILE* f = fopen("test/testfiles/resout.txt", "w");
+    int res[strok];
+    for (i = 0; i < strok; i++)
+        res[i] = i;
+    result = wresult(f, strok, res);
+    ASSERT_EQUAL(0, result);
 }
 int main(int argc, const char* argv[])
 {
