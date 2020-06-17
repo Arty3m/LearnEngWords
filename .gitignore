@@ -5,3 +5,5 @@ bin/main
 bin/main-test
 
 bin/Results.txt
+
+test/testfiles/resout.txt
