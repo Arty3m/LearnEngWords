@@ -12,5 +12,6 @@ int readres(FILE* f, int strok, int* p)
         if (fgets(s, 100, f) != NULL)
             p[i] = atoi(s);
     }
+    rewind(f);
     return 0;
 }
